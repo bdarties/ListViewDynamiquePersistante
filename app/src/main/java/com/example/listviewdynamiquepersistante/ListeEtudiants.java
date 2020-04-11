@@ -56,10 +56,14 @@ public class ListeEtudiants extends AppCompatActivity {
         String listeEtudiantTxtJson = prefsStockees.getString("cle_listeEtudiants", "");
         // desormais dans listeEtudiantsTxtJson on a tous nos etudiants stockés dans un format json
         // on reconstruit un tableau d'objets de type étudiants grace à al liste au format json
-        Etudiant[] tableauEtudiantsTemporaire = gson.fromJson(listeEtudiantTxtJson, Etudiant[].class);
-        // reconstitution d'une arrayList a partir du tableau tableauEtudiantsTemporaire
-        listestudiants = new ArrayList<Etudiant>(Arrays.asList(tableauEtudiantsTemporaire));
-
+        if (listeEtudiantTxtJson.equals("")) {
+            listestudiants = new ArrayList<Etudiant>();
+        }
+        else {
+            Etudiant[] tableauEtudiantsTemporaire = gson.fromJson(listeEtudiantTxtJson, Etudiant[].class);
+            // reconstitution d'une arrayList a partir du tableau tableauEtudiantsTemporaire
+            listestudiants = new ArrayList<Etudiant>(Arrays.asList(tableauEtudiantsTemporaire));
+        }
         /*****************************************/
         /*** AFFICHAGE DE LA LISTE D'ETUDIANTS ***/
         /*****************************************/
